@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiNet - Network Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('about') }}">
+            <div class="logo">OptiNet</div>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">
+                <i class="fas fa-chart-line"></i>
+                Network Monitor
+            </a>
+            <a href="{{ url_for('analyzer') }}">
+                <i class="fas fa-network-wired"></i>
+                Connection Analyzer
+            </a>
+            <a href="{{ url_for('scanner') }}">
+                <i class="fas fa-fingerprint"></i>
+                Port Scanner
+            </a>
+            <a href="{{ url_for('http_checker') }}">
+                <i class="fas fa-globe"></i>
+                HTTP Status
+            </a>
+            <a href="{{ url_for('network_scan') }}" {% if request.endpoint == 'network_scan' %}class="active"{% endif %}>
+                <i class="fas fa-search"></i>
+                Network Scanner
+            </a>
+            <a href="{{ url_for('about') }}">
+                <i class="fas fa-info-circle"></i>
+                About
+            </a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="page-header">
+            <h1>Network Scanner</h1>
+            <p class="page-description">Scan and discover devices on your local network</p>
+        </div>
+    
+        <div class="scanner-container">
+            <div class="monitor-card scanner-card full-width">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="header-text">
+                        <h3>Network Scan</h3>
+                        <p>Discover devices on network</p>
+                    </div>
+                </div>
+                <div class="input-section">
+                    <div class="input-wrapper">
+                        <div class="input-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <input type="text" 
+                               id="ip-range-input" 
+                               class="full-width-input"
+                               placeholder="Enter IP Range (e.g., 192.168.1.0/24)">
+                    </div>
+                    <button onclick="startScan()" class="scan-button full-width">
+                        <i class="fas fa-search"></i>
+                        Start Scan
+                    </button>
+                    <div class="scan-instructions">
+                        Common formats: 
+                        <span class="format-example">192.168.1.0/24</span>
+                        <span class="format-example">10.0.0.0/16</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    
+            <!-- Results Section -->
+            <div class="monitor-card results-card">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="header-text">
+                        <h3>Scan Results</h3>
+                        <p>Discovered devices</p>
+                    </div>
+                </div>
+                <div id="scan-results" class="result-box">
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <p>Enter an IP range to start scanning</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='network-scan.js') }}"></script>
+</body>
+</html>

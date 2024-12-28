@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiNet - Network Monitor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('about') }}">
+            <div class="logo">OptiNet</div>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="active"{% endif %}>
+                <i class="fas fa-chart-line"></i>
+                Network Monitor
+            </a>
+            <a href="{{ url_for('analyzer') }}" {% if request.endpoint == 'analyzer' %}class="active"{% endif %}>
+                <i class="fas fa-network-wired"></i>
+                Connection Analyzer
+            </a>
+            <a href="{{ url_for('scanner') }}" {% if request.endpoint == 'scanner' %}class="active"{% endif %}>
+                <i class="fas fa-fingerprint"></i>
+                Port Scanner
+            </a>
+            <a href="{{ url_for('http_checker') }}" {% if request.endpoint == 'http_checker' %}class="active"{% endif %}>
+                <i class="fas fa-globe"></i>
+                HTTP Status
+            </a>
+            <a href="{{ url_for('network_scan') }}" {% if request.endpoint == 'network_scan' %}class="active"{% endif %}>
+                <i class="fas fa-search"></i>
+                Network Scanner
+            </a>
+            <a href="{{ url_for('about') }}">
+                <i class="fas fa-info-circle"></i>
+                About
+            </a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="monitor-header">
+            <h1>Network Monitor</h1>
+            <p class="monitor-description">Real-time network performance monitoring and interface statistics</p>
+        </div>
+
+        <div class="monitor-grid">
+            <!-- Bandwidth Monitor Card -->
+            <div class="monitor-card bandwidth-card">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="header-text">
+                        <h3>Bandwidth Monitor</h3>
+                        <p>Real-time network speed measurement</p>
+                    </div>
+                </div>
+                
+                <div class="bandwidth-metrics">
+                    <div class="metric-card download">
+                        <div class="metric-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Download</span>
+                            <span class="metric-value" id="download-speed">0.00 Mbps</span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card upload">
+                        <div class="metric-icon">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Upload</span>
+                            <span class="metric-value" id="upload-speed">0.00 Mbps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Network Interfaces Card -->
+            <div class="monitor-card interfaces-card">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="header-text">
+                        <h3>Network Interfaces</h3>
+                        <p>Active network connections and status</p>
+                    </div>
+                </div>
+
+                <div class="interface-filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-globe"></i> All
+                    </button>
+                    <button class="filter-btn" data-filter="up">
+                        <i class="fas fa-check-circle"></i> Active
+                    </button>
+                    <button class="filter-btn" data-filter="down">
+                        <i class="fas fa-times-circle"></i> Inactive
+                    </button>
+                </div>
+
+                <div id="interface-list" class="interface-list">
+                    <!-- Interfaces will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='monitor.js') }}"></script>
+</body>
+</html>

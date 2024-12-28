@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiNet - HTTP Status Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('about') }}">
+            <div class="logo">OptiNet</div>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="active"{% endif %}>
+                <i class="fas fa-chart-line"></i>
+                Network Monitor
+            </a>
+            <a href="{{ url_for('analyzer') }}" {% if request.endpoint == 'analyzer' %}class="active"{% endif %}>
+                <i class="fas fa-network-wired"></i>
+                Connection Analyzer
+            </a>
+            <a href="{{ url_for('scanner') }}" {% if request.endpoint == 'scanner' %}class="active"{% endif %}>
+                <i class="fas fa-fingerprint"></i>
+                Port Scanner
+            </a>
+            <a href="{{ url_for('http_checker') }}" {% if request.endpoint == 'http_checker' %}class="active"{% endif %}>
+                <i class="fas fa-globe"></i>
+                HTTP Status
+            </a>
+            <a href="{{ url_for('network_scan') }}" {% if request.endpoint == 'network_scan' %}class="active"{% endif %}>
+                <i class="fas fa-search"></i>
+                Network Scanner
+            </a>
+            <a href="{{ url_for('about') }}">
+                <i class="fas fa-info-circle"></i>
+                About
+            </a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="page-header">
+            <h1>HTTP Status Checker</h1>
+            <p class="page-description">Check HTTP status codes and connectivity for any URL</p>
+        </div>
+
+        <div class="http-checker-section">
+            <div class="url-input-wrapper">
+                <input type="text" 
+                       class="url-input" 
+                       id="url-input" 
+                       placeholder="Enter URL (e.g., https://example.com)"
+                       spellcheck="false">
+                <button class="check-status-btn" onclick="checkStatus()">
+                    <i class="fas fa-globe"></i>
+                    Check Status
+                </button>
+            </div>
+            
+            <div class="status-codes-info">
+                <div class="status-code-item success">
+                    <span class="code">200</span>
+                    <span class="description">OK - Successful request</span>
+                </div>
+                <div class="status-code-item warning">
+                    <span class="code">400</span>
+                    <span class="description">Bad Request - Invalid argument</span>
+                </div>
+                <div class="status-code-item error">
+                    <span class="code">403</span>
+                    <span class="description">Forbidden - Permission denied</span>
+                </div>
+                <div class="status-code-item error">
+                    <span class="code">429</span>
+                    <span class="description">Resource Exhausted - Quota exceeded</span>
+                </div>
+                <div class="status-code-item error">
+                    <span class="code">500</span>
+                    <span class="description">Internal Server Error</span>
+                </div>
+                <div class="status-code-item error">
+                    <span class="code">503</span>
+                    <span class="description">Service Unavailable</span>
+                </div>
+                <div class="status-code-item warning">
+                    <span class="code">504</span>
+                    <span class="description">Gateway Timeout - Deadline exceeded</span>
+                </div>
+            </div>
+
+            <div id="status-result" class="result-box">
+                <div class="empty-state">
+                    <i class="fas fa-globe"></i>
+                    <p>Enter a URL to check its HTTP status</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='http-checker.js') }}"></script>
+</body>
+</html>

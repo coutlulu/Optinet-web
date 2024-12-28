@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiNet - Connection Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('about') }}">
+            <div class="logo">OptiNet</div>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="active"{% endif %}>
+                <i class="fas fa-chart-line"></i>
+                Network Monitor
+            </a>
+            <a href="{{ url_for('analyzer') }}" {% if request.endpoint == 'analyzer' %}class="active"{% endif %}>
+                <i class="fas fa-network-wired"></i>
+                Connection Analyzer
+            </a>
+            <a href="{{ url_for('scanner') }}" {% if request.endpoint == 'scanner' %}class="active"{% endif %}>
+                <i class="fas fa-fingerprint"></i>
+                Port Scanner
+            </a>
+            <a href="{{ url_for('http_checker') }}" {% if request.endpoint == 'http_checker' %}class="active"{% endif %}>
+                <i class="fas fa-globe"></i>
+                HTTP Status
+            </a>
+            <a href="{{ url_for('network_scan') }}" {% if request.endpoint == 'network_scan' %}class="active"{% endif %}>
+                <i class="fas fa-search"></i>
+                Network Scanner
+            </a>
+            <a href="{{ url_for('about') }}">
+                <i class="fas fa-info-circle"></i>
+                About
+            </a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="page-header">
+            <h1>Connection Analyzer</h1>
+            <p class="page-description">Analyze and troubleshoot network connections with professional diagnostic tools</p>
+        </div>
+
+        <div class="monitor-grid">
+            <!-- Ping Tool -->
+            <div class="monitor-card tool-card" onclick="selectAnalysisTool('ping')" id="ping-tool">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="header-text">
+                        <h3>Ping Test</h3>
+                        <p>Measure response time and packet loss</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DNS Lookup Tool -->
+            <div class="monitor-card tool-card" onclick="selectAnalysisTool('nslookup')" id="nslookup-tool">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="header-text">
+                        <h3>DNS Lookup</h3>
+                        <p>Query DNS records and domain info</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Traceroute Tool -->
+            <div class="monitor-card tool-card" onclick="selectAnalysisTool('traceroute')" id="traceroute-tool">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="header-text">
+                        <h3>Traceroute</h3>
+                        <p>Track network path and routing</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Panel -->
+            <div class="monitor-card analysis-panel" style="grid-column: 1 / -1;">
+                <div class="card-header">
+                    <div class="header-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <div class="header-text">
+                        <h3>Analysis Results</h3>
+                        <p id="tool-hint">Select a tool above to begin analysis</p>
+                    </div>
+                </div>
+
+                <div class="input-wrapper">
+                    <div class="input-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <input type="text" 
+                           id="host-input" 
+                           placeholder="Enter hostname or IP address"
+                           onkeypress="handleKeyPress(event)">
+                    <button onclick="runAnalysis()" class="filter-btn">
+                        <i class="fas fa-play"></i>
+                        Analyze
+                    </button>
+                </div>
+
+                <div id="analysis-result" class="result-box">
+                    <div class="empty-state">
+                        <i class="fas fa-terminal"></i>
+                        <p>Results will appear here...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='analyzer.js') }}"></script>
+</body>
+</html>

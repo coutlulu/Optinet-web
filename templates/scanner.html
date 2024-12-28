@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiNet - Port Scanner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('about') }}">
+            <div class="logo">OptiNet</div>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}" {% if request.endpoint == 'index' %}class="active"{% endif %}>
+                <i class="fas fa-chart-line"></i>
+                Network Monitor
+            </a>
+            <a href="{{ url_for('analyzer') }}" {% if request.endpoint == 'analyzer' %}class="active"{% endif %}>
+                <i class="fas fa-network-wired"></i>
+                Connection Analyzer
+            </a>
+            <a href="{{ url_for('scanner') }}" {% if request.endpoint == 'scanner' %}class="active"{% endif %}>
+                <i class="fas fa-fingerprint"></i>
+                Port Scanner
+            </a>
+            <a href="{{ url_for('http_checker') }}" {% if request.endpoint == 'http_checker' %}class="active"{% endif %}>
+                <i class="fas fa-globe"></i>
+                HTTP Status
+            </a>
+            <a href="{{ url_for('network_scan') }}" {% if request.endpoint == 'network_scan' %}class="active"{% endif %}>
+                <i class="fas fa-search"></i>
+                Network Scanner
+            </a>
+            <a href="{{ url_for('about') }}">
+                <i class="fas fa-info-circle"></i>
+                About
+            </a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="page-header">
+            <h1>Port Scanner</h1>
+            <p class="page-description">Scan network ports and discover running services</p>
+        </div>
+
+        <div class="scanner-container">
+            <div class="input-section">
+                <div class="input-wrapper">
+                    <div class="input-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <input type="text" id="target-input" placeholder="Enter hostname or IP (e.g., localhost)">
+                </div>
+                <div class="port-range">
+                    <div class="input-group">
+                        <label>Start Port</label>
+                        <input type="number" id="start-port" value="1" min="1" max="65535">
+                    </div>
+                    <div class="input-group">
+                        <label>End Port</label>
+                        <input type="number" id="end-port" value="100" min="1" max="65535">
+                    </div>
+                </div>
+                <button onclick="startScan()" class="scan-button">
+                    <i class="fas fa-play"></i>
+                    Start Scan
+                </button>
+            </div>
+
+            <div class="result-section">
+                <div class="result-header">
+                    <h3>Scan Results</h3>
+                    <div class="result-actions">
+                        <button onclick="copyResults()" class="action-button">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <button onclick="clearResults()" class="action-button">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="scan-results" class="result-box">
+                    <div class="empty-state">
+                        <i class="fas fa-fingerprint"></i>
+                        <p>Enter target details and click Start Scan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='scanner.js') }}"></script>
+</body>
+</html>

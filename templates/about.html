@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiNet - About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('about') }}">
+            <div class="logo">OptiNet</div>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">
+                <i class="fas fa-chart-line"></i>
+                Network Monitor
+            </a>
+            <a href="{{ url_for('analyzer') }}">
+                <i class="fas fa-network-wired"></i>
+                Connection Analyzer
+            </a>
+            <a href="{{ url_for('scanner') }}">
+                <i class="fas fa-fingerprint"></i>
+                Port Scanner
+            </a>
+            <a href="{{ url_for('http_checker') }}">
+                <i class="fas fa-globe"></i>
+                HTTP Status
+            </a>
+            <a href="{{ url_for('network_scan') }}">
+                <i class="fas fa-search"></i>
+                Network Scanner
+            </a>
+            <a href="{{ url_for('about') }}" class="active">
+                <i class="fas fa-info-circle"></i>
+                About
+            </a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="about-hero">
+            <h1>OptiNet</h1>
+            <p class="tagline">Advanced Network Diagnostics Suite</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <i class="fas fa-tools"></i>
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Powerful Tools</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-bolt"></i>
+                    <span class="stat-value">Real-time</span>
+                    <span class="stat-label">Monitoring</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="stat-value">Secure</span>
+                    <span class="stat-label">Analysis</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tools-showcase">
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Network Monitor</h3>
+                <p>Real-time bandwidth tracking and interface monitoring with advanced metrics and visual data representation.</p>
+                <ul class="feature-list">
+                    <li>Live bandwidth monitoring</li>
+                    <li>Interface status tracking</li>
+                    <li>Network usage analytics</li>
+                </ul>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>Connection Analyzer</h3>
+                <p>Comprehensive network diagnostics with ping, traceroute, and DNS lookup capabilities.</p>
+                <ul class="feature-list">
+                    <li>Response time analysis</li>
+                    <li>Route tracing</li>
+                    <li>DNS record inspection</li>
+                </ul>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-fingerprint"></i>
+                </div>
+                <h3>Port Scanner</h3>
+                <p>Advanced port scanning with service detection and security analysis features.</p>
+                <ul class="feature-list">
+                    <li>Service identification</li>
+                    <li>Open port detection</li>
+                    <li>Security assessment</li>
+                </ul>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>HTTP Status</h3>
+                <p>Instant HTTP response analysis with detailed status codes and server information.</p>
+                <ul class="feature-list">
+                    <li>Status code verification</li>
+                    <li>Server response analysis</li>
+                    <li>Connection diagnostics</li>
+                </ul>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Network Scanner</h3>
+                <p>Discover and analyze devices on your network with detailed information and insights.</p>
+                <ul class="feature-list">
+                    <li>Device discovery</li>
+                    <li>MAC address detection</li>
+                    <li>Network mapping</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tech-stack">
+            <h2>Powered By</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-flask"></i>
+                    <span>Flask</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Scapy</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <div class="team-content">
+                <div class="team-info">
+                    <h2>Prepared by</h2>
+                    <ul class="team-list">
+                        <li>Muhammad Irfan Danish Bin Noor Azlin (16369)</li>
+                        <li>Muhammad Nurillanwar Bin Mohammadin (160349)</li>
+                        <li>Arif Arman Bin Mazlan (160466)</li>
+                        <li>Muhammad Aqif Bin Ali Yasak (164320)</li>
+                        <li>Idham Fitri Bin Mohd Rodzi (160474)</li>
+                    </ul>
+                </div>
+                
+                <div class="supervisor-info">
+                    <h2>Provided for</h2>
+                    <p class="supervisor">
+                        <a href="https://cs.usm.my/index.php/faculty-member/166-aman-jantan-associate-professor-dr">
+                            ASSOC. PROF. DR. AMAN JANTAN
+                        </a>
+                    </p>
+                    <p class="course">CST338 LECTURER</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
